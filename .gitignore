@@ -66,6 +66,6 @@ fastlane/readme.md
 
 
 #Custom
-*.
+*.iws
 workspace.xml
 tasks.xml

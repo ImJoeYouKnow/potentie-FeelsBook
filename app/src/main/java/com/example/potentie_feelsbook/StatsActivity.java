@@ -3,11 +3,11 @@ package com.example.potentie_feelsbook;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class HistoryActivity extends AppCompatActivity {
+public class StatsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
+        setContentView(R.layout.activity_stats);
     }
 }

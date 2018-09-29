@@ -7,17 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_home"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
@@ -28,5 +17,79 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
+
+    <ImageView
+        android:id="@+id/centerImage"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="@string/center_image_desc"
+        android:src="@mipmap/ic_center"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/angerEmoji"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/anger_emoji_desc"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_anger"
+        app:layout_constraintEnd_toStartOf="@+id/centerImage"
+        app:layout_constraintTop_toTopOf="@+id/centerImage" />
+
+    <ImageButton
+        android:id="@+id/joyEmoji"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="@string/joy_emoji_desc"
+        app:layout_constraintBottom_toBottomOf="@+id/centerImage"
+        app:layout_constraintEnd_toStartOf="@+id/centerImage"
+        app:srcCompat="@mipmap/ic_joy" />
+
+    <ImageButton
+        android:id="@+id/surpriseEmoji"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:contentDescription="@string/surprise_emoji_desc"
+        app:layout_constraintEnd_toEndOf="@+id/centerImage"
+        app:layout_constraintStart_toStartOf="@+id/centerImage"
+        app:layout_constraintTop_toBottomOf="@+id/centerImage"
+        app:srcCompat="@mipmap/ic_surprise" />
+
+    <ImageButton
+        android:id="@+id/loveEmoji"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="@string/love_emoji_desc"
+        app:layout_constraintBottom_toTopOf="@+id/surpriseEmoji"
+        app:layout_constraintStart_toEndOf="@+id/centerImage"
+        app:srcCompat="@mipmap/ic_love" />
+
+    <ImageButton
+        android:id="@+id/fearEmoji"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/fear_emoji_desc"
+        app:layout_constraintStart_toEndOf="@+id/centerImage"
+        app:layout_constraintTop_toTopOf="@+id/centerImage"
+        app:srcCompat="@mipmap/ic_fear" />
+
+    <ImageButton
+        android:id="@+id/sadnessEmoji"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:contentDescription="@string/fear_emoji_desc"
+        app:layout_constraintBottom_toTopOf="@+id/centerImage"
+        app:layout_constraintEnd_toEndOf="@+id/centerImage"
+        app:layout_constraintStart_toStartOf="@+id/centerImage"
+        app:srcCompat="@mipmap/ic_sadness" />
+
 
 </android.support.constraint.ConstraintLayout>

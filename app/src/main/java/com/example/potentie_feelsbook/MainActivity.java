@@ -1,5 +1,6 @@
 package com.example.potentie_feelsbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -21,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_history:
-                    mTextMessage.setText(R.string.title_history);
+                    openActivityHistory();
                     return true;
                 case R.id.navigation_stats:
-                    mTextMessage.setText(R.string.title_stats);
+                    openActivityStats();
                     return true;
             }
             return false;
@@ -40,5 +41,15 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
+    public void openActivityHome(){
+        //TODO Implement this code.
+    }
+    public void openActivityHistory(){
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
+    }
+    public void openActivityStats(){
+        Intent intent = new Intent(this, StatsActivity.class);
+        startActivity(intent);
+    }
 }
