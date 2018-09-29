@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">potentie-FeelsBook</string>
     <string name="title_home">Home</string>
-    <string name="title_history">History</string>
-    <string name="title_stats">Stats</string>
+    <string name="title_history">HISTORY</string>
+    <string name="title_stats">STATS</string>
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="center_image_desc">Center graphic for looks only.</string>
+    <string name="joy_emoji_desc">joy emoji</string>
+    <string name="anger_emoji_desc">anger emoji</string>
+    <string name="surprise_emoji_desc">surprise emoji</string>
+    <string name="love_emoji_desc">love emoji</string>
+    <string name="fear_emoji_desc">fear emoji</string>
+    <string name="sadness_emoji_desc">sadness emoji</string>
 </resources>
