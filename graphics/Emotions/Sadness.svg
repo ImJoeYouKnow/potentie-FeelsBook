@@ -26,7 +26,7 @@
    inkscape:export-ydpi="96"><metadata
    id="metadata19"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
    id="defs17"><symbol
      viewBox="0 0 64 64"
      id="emoji-1f621"><title
@@ -243,7 +243,27 @@
        cx="18.5"
        cy="21.785"
        r="4.5"
-       id="circle50973" /></symbol></defs><sodipodi:namedview
+       id="circle50973" /></symbol><symbol
+     viewBox="0 0 64 64"
+     id="emoji-1f61e"><title
+       id="title49104">1f61e</title><circle
+       fill="#ffdd67"
+       cx="31.999"
+       cy="32"
+       r="30"
+       id="circle49106" /><g
+       fill="#664e27"
+       id="g49118"><path
+         d="m42.683 51.839c-1.801-1.059-3.541-1.701-5.322-2.127-1.775-.426-3.566-.609-5.361-.611-1.799.008-3.588.189-5.361.615-1.781.428-3.52 1.066-5.322 2.123.771-1.977 2.484-3.531 4.396-4.525 1.932-1 4.119-1.486 6.287-1.486 2.166.004 4.354.486 6.283 1.49 1.909.994 3.624 2.546 4.4 4.521"
+         id="path49108" /><path
+         d="m23.934 29.23c1.354 3.189.098 6.979-2.806 8.468-2.904 1.484-6.354.105-7.711-3.083-.859-2.026 9.657-7.411 10.517-5.385"
+         id="path49110" /><path
+         d="m29.1 28.911c-2.079.222-3.933.56-5.727 1.087-1.788.515-3.494 1.198-5.135 2.034-1.649.842-3.212 1.815-4.723 2.986-1.517 1.167-2.938 2.508-4.416 4.131.226-2.3 1.252-4.46 2.633-6.24 1.387-1.782 3.168-3.222 5.106-4.197 1.944-.989 4.077-1.54 6.211-1.562 2.126-.008 4.29.498 6.05 1.761"
+         id="path49112" /><path
+         d="m40.06 29.23c-1.355 3.191-.1 6.979 2.803 8.467 2.906 1.486 6.356.107 7.713-3.081.858-2.026-9.656-7.409-10.516-5.386"
+         id="path49114" /><path
+         d="m34.894 28.911c1.762-1.263 3.924-1.771 6.05-1.761 2.136.021 4.269.572 6.213 1.561 1.938.977 3.718 2.416 5.104 4.198 1.38 1.783 2.409 3.941 2.635 6.24-1.478-1.623-2.901-2.964-4.416-4.131-1.513-1.17-3.075-2.145-4.723-2.988-1.643-.834-3.349-1.518-5.137-2.032-1.792-.527-3.647-.865-5.724-1.087"
+         id="path49116" /></g></symbol></defs><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
    borderopacity="1"
@@ -257,7 +277,7 @@
    id="namedview15"
    showgrid="false"
    inkscape:zoom="0.27314815"
-   inkscape:cx="-1369.2203"
+   inkscape:cx="-3335.1864"
    inkscape:cy="432"
    inkscape:window-x="-16"
    inkscape:window-y="-16"
@@ -280,6 +300,7 @@
      y="279.63483"
      style="font-size:157.98551941px;stroke-width:0.82284129">SADNESS</tspan></text>
 
+
 <flowRoot
    xml:space="preserve"
    id="flowRoot2495"
@@ -290,7 +311,7 @@
        height="768.81354"
        x="-54.915253"
        y="-84.203392" /></flowRegion><flowPara
-     id="flowPara2501"></flowPara></flowRoot><flowRoot
+     id="flowPara2501" /></flowRoot><flowRoot
    xml:space="preserve"
    id="flowRoot2503"
    style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
@@ -300,11 +321,11 @@
        height="673.62714"
        x="-270.91525"
        y="84.203392" /></flowRegion><flowPara
-     id="flowPara2509"></flowPara></flowRoot><use
-   id="use96927"
-   xlink:href="#emoji-1f628"
+     id="flowPara2509" /></flowRoot><use
+   id="use95121"
+   xlink:href="#emoji-1f61e"
    x="0"
    y="0"
    width="100%"
    height="100%"
-   transform="translate(-959.18639,-710.23729)" /></svg>
+   transform="translate(-969.81701,-732.20339)" /></svg>

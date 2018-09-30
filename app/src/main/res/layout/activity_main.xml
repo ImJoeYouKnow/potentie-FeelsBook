@@ -85,7 +85,7 @@
         android:id="@+id/sadnessEmoji"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:contentDescription="@string/fear_emoji_desc"
+        android:contentDescription="@string/sadness_emoji_desc"
         app:layout_constraintBottom_toTopOf="@+id/centerImage"
         app:layout_constraintEnd_toEndOf="@+id/centerImage"
         app:layout_constraintStart_toStartOf="@+id/centerImage"
