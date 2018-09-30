@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -19,13 +17,15 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    //No need to do anything
                     return true;
                 case R.id.navigation_history:
                     openActivityHistory();
+                    finishActivity();
                     return true;
                 case R.id.navigation_stats:
                     openActivityStats();
+                    finishActivity();
                     return true;
             }
             return false;
@@ -37,13 +37,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-    public void openActivityHome(){
-        //TODO Implement this code.
-    }
+
     public void openActivityHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
@@ -51,5 +48,8 @@ public class MainActivity extends AppCompatActivity {
     public void openActivityStats(){
         Intent intent = new Intent(this, StatsActivity.class);
         startActivity(intent);
+    }
+    public void finishActivity(){
+        this.finish();
     }
 }
