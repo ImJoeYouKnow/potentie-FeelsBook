@@ -44,10 +44,12 @@ public class MainActivity extends AppCompatActivity {
     public void openActivityHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
+        this.overridePendingTransition(0,0);
     }
     public void openActivityStats(){
         Intent intent = new Intent(this, StatsActivity.class);
         startActivity(intent);
+        this.overridePendingTransition(0,0);
     }
     public void finishActivity(){
         this.finish();

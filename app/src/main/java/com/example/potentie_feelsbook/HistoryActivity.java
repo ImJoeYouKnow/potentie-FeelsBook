@@ -37,16 +37,19 @@ public class HistoryActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_history);
     }
 
     public void openActivityHome(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        this.overridePendingTransition(0,0);
     }
 
     public void openActivityStats(){
         Intent intent = new Intent(this, StatsActivity.class);
         startActivity(intent);
+        this.overridePendingTransition(0,0);
     }
 
     public void finishActivity(){
