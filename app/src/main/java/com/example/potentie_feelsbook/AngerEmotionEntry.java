@@ -1,5 +1,7 @@
 package com.example.potentie_feelsbook;
 
+import java.util.Date;
+
 public class AngerEmotionEntry extends EmotionEntry {
 
     private String name="Anger";
@@ -14,4 +16,5 @@ public class AngerEmotionEntry extends EmotionEntry {
     public String getName(){
         return name;
     }
+
 }

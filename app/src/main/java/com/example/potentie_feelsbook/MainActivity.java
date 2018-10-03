@@ -7,21 +7,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText noteText;
-    private ListView emotionList;
-    private ArrayList<EmotionEntry> emotions = new ArrayList<EmotionEntry>();
-    private ArrayAdapter<EmotionEntry> adapter;
+    EmotionListController emotionListControl = new EmotionListController();
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -53,21 +45,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        emotionList = findViewById(R.id.history_list);
+
 
         setupButtons();
 
 
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter = new ArrayAdapter<EmotionEntry>(this,
-                R.layout.activity_history, emotions);
-        //emotionList.setAdapter(adapter);
-    }
-
 
     //https://www.youtube.com/watch?v=GtxVILjLcw8 thanks to "Coding in flow" for the tutorial, this can also be found all over online.
     @Override
@@ -75,31 +58,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()){
             case R.id.angerEmoji:
                 Toast.makeText(this, "angerEmoji was clicked", Toast.LENGTH_SHORT).show();
-                AngerEmotionEntry newEmotion = new AngerEmotionEntry();
-                newEmotion.setDate(new Date());
-                newEmotion.setNote(fetchText());
-                emotions.add(newEmotion);
-                //adapter.notifyDataSetChanged();
+                AngerEmotionEntry angerEmotion = new AngerEmotionEntry();
+                emotionListControl.addEmotionEntry(angerEmotion);
 
-
-                //ImageView centerImage = findViewById(R.id.centerImage);
-                //centerImage.setImageResource(R.mipmap.ic_center_anger);
-                //ImageViewAnimatedChange(this, centerImage, R.mipmap.ic_center_anger);
+                //TODO ImageView centerImage = findViewById(R.id.centerImage);
+                //TODO centerImage.setImageResource(R.mipmap.ic_center_anger);
+                //TODO ImageViewAnimatedChange(this, centerImage, R.mipmap.ic_center_anger);
                 break;
             case R.id.joyEmoji:
                 Toast.makeText(this, "joyEmoji was clicked", Toast.LENGTH_SHORT).show();
+                JoyEmotionEntry joyEmotion = new JoyEmotionEntry();
+                emotionListControl.addEmotionEntry(joyEmotion);
                 break;
             case R.id.surpriseEmoji:
                 Toast.makeText(this, "surpriseEmoji was clicked", Toast.LENGTH_SHORT).show();
+                SurpriseEmotionEntry surpriseEmotion = new SurpriseEmotionEntry();
+                emotionListControl.addEmotionEntry(surpriseEmotion);
                 break;
             case R.id.loveEmoji:
                 Toast.makeText(this, "loveEmoji was clicked", Toast.LENGTH_SHORT).show();
+                LoveEmotionEntry loveEmotion = new LoveEmotionEntry();
+                emotionListControl.addEmotionEntry(loveEmotion);
                 break;
             case R.id.fearEmoji:
                 Toast.makeText(this, "fearEmoji was clicked", Toast.LENGTH_SHORT).show();
+                FearEmotionEntry fearEmotion = new FearEmotionEntry();
+                emotionListControl.addEmotionEntry(fearEmotion);
                 break;
             case R.id.sadnessEmoji:
                 Toast.makeText(this, "sadnessEmoji was clicked", Toast.LENGTH_SHORT).show();
+                SadnessEmotionEntry sadnessEmotion = new SadnessEmotionEntry();
+                emotionListControl.addEmotionEntry(sadnessEmotion);
                 break;
         }
     }
@@ -134,12 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void finishActivity(){
         this.finish();
-    }
-
-    public String fetchText(){
-        noteText = findViewById(R.id.textInput);
-        String text = noteText.getText().toString();
-        return text;
     }
 
 }

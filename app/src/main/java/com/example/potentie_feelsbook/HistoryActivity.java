@@ -6,6 +6,11 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -38,6 +43,22 @@ public class HistoryActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_history);
+
+        ListView listView = findViewById(R.id.history_list);
+        final ArrayList<EmotionEntry> list = new ArrayList<>(EmotionListController.getEmotionHistoryList().getEmotions());
+        final ArrayAdapter<EmotionEntry> emotionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(emotionAdapter);
+
+         EmotionListController.getEmotionHistoryList().addListener(new Listener() {
+            @Override
+            public void update() {
+                list.clear();
+                Collection<EmotionEntry> emotionEntry = EmotionListController.getEmotionHistoryList().getEmotions();
+                list.addAll(emotionEntry);
+                emotionAdapter.notifyDataSetChanged();
+            }
+        });
+
     }
 
     public void openActivityHome(){
