@@ -1,22 +1,42 @@
 package com.example.potentie_feelsbook;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
+
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class HistoryActivity extends AppCompatActivity {
+
+    Dialog myPopup;
+    Calendar datePicked;
+    EmotionListController emotionListControl = new EmotionListController();
+    private static final String TAG = "HistoryActivity";
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -70,9 +90,12 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
+        myPopup = new Dialog(this);
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
+                showPopup(view, list.get(pos));
                 return false;
             }
         });
@@ -90,7 +113,83 @@ public class HistoryActivity extends AppCompatActivity {
         startActivity(intent);
         this.overridePendingTransition(0,0);
     }
+
+    //Credit -- https://www.youtube.com/watch?v=0DH2tZjJtm0
+    public void showPopup(View v, EmotionEntry obj){
+        Button editNote;
+
+        myPopup.setContentView(R.layout.custom_popup);
+
+        //set icon in popup
+        ImageView icon = myPopup.findViewById(R.id.popup_icon);
+        icon.setImageResource(obj.getIcon());
+        //set date textView
+        TextView date = myPopup.findViewById(R.id.popup_date);
+        String placeholder = "Date: "+ obj.getDate();
+        date.setText(placeholder);
+        //set note TextView if needed
+        if(!obj.getNote().isEmpty()){
+            TextView note = myPopup.findViewById(R.id.popup_note);
+            placeholder = "Note: "+ obj.getNote();
+            note.setText(placeholder);
+        }
+
+        //Couldn't delete until made final record of the emotion.
+        final EmotionEntry finalEmotion = obj;
+        Button deleteEntry = myPopup.findViewById(R.id.popup_button_delete);
+        deleteEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emotionListControl.removeEmotionEntry(finalEmotion);
+                myPopup.dismiss();
+            }
+        });
+
+        Button editDate = myPopup.findViewById(R.id.popup_button_date);
+        editDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar date = showDateTimePicker();
+                String test = "Your date was picked: "+ date;
+                Log.e("CMPUT 301", test);
+            }
+        });
+
+
+        ImageButton exit = myPopup.findViewById(R.id.popup_exit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myPopup.dismiss();
+            }
+        });
+
+        myPopup.show();
+
+
+    }
     public void finishActivity(){
         this.finish();
+    }
+
+
+    public Calendar showDateTimePicker() {
+        final Calendar currentDate = Calendar.getInstance();
+        datePicked = Calendar.getInstance();
+        new DatePickerDialog(HistoryActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                datePicked.set(year, monthOfYear, dayOfMonth);
+                new TimePickerDialog(HistoryActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        datePicked.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        datePicked.set(Calendar.MINUTE, minute);
+                        Log.v(TAG, "The choosen one " + datePicked.getTime());
+                    }
+                }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
+            }
+        }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
+        return datePicked;
     }
 }

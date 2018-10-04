@@ -1,18 +1,22 @@
 package com.example.potentie_feelsbook;
 
-//import android.graphics.drawable.Icon;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+
 public abstract class EmotionEntry {
-    private Date date=new Date();
+    private DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    String nowAsISO = df.format(new Date());
+
     private String note = "";
 
-    public Date getDate(){
-        return this.date;
+    public String getDate(){
+        return this.nowAsISO;
     }
-    public void setDate(Date newDate){
-        this.date=newDate;
+    public void setDate(String newDate){
+        this.nowAsISO= newDate;
     }
 
     public String getNote(){
@@ -25,12 +29,12 @@ public abstract class EmotionEntry {
     public abstract String getName();
 
     public String toString() {
-        if (getNote() != "") {
+        if (!getNote().isEmpty()) {
             return getName() +" | "+ getNote() +" | "+ getDate();
         } else {
             return getName() +" | "+ getDate();
         }
     }
     //Saved for later if I have time
-    //public abstract Icon getIcon();
+    public abstract int getIcon();
 }
