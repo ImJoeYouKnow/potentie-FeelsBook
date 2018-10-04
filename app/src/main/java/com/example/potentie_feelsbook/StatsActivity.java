@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StatsActivity extends AppCompatActivity {
 
 
+    EmotionListController emotionListControl = new EmotionListController();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,7 +48,7 @@ public class StatsActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_stats);
 
-        getListOfViews();
+        setupStats();
 
     }
 
@@ -66,7 +68,7 @@ public class StatsActivity extends AppCompatActivity {
         this.finish();
     }
 
-    public ArrayList<View> getListOfViews(){
+    public void setupStats(){
         TextView anger_stats = findViewById(R.id.stats_anger);
         TextView joy_stats = findViewById(R.id.stats_joy);
         TextView surprise_stats = findViewById(R.id.stats_surprise);
@@ -74,12 +76,20 @@ public class StatsActivity extends AppCompatActivity {
         TextView fear_stats = findViewById(R.id.stats_fear);
         TextView sadness_stats = findViewById(R.id.stats_sadness);
 
-        anger_stats.setText("ANGER: ");
-        joy_stats.setText("JOY: ");
-        surprise_stats.setText("SURPRISE: ");
-        love_stats.setText("LOVE: ");
-        fear_stats.setText("FEAR: ");
-        sadness_stats.setText("SADNESS: ");
-        return null;
+        String string_anger = "ANGER: " + emotionListControl.getCount("Anger");
+        String string_joy = "JOY: " + emotionListControl.getCount("Joy");
+        String string_surprise = "SURPRISE: " + emotionListControl.getCount("Surprise");
+        String string_love = "LOVE: " + emotionListControl.getCount("Love");
+        String string_fear = "FEAR: " + emotionListControl.getCount("Fear");
+        String string_sadness = "SADNESS: " + emotionListControl.getCount("Sadness");
+
+
+
+        anger_stats.setText(string_anger);
+        joy_stats.setText(string_joy);
+        surprise_stats.setText(string_surprise);
+        love_stats.setText(string_love);
+        fear_stats.setText(string_fear);
+        sadness_stats.setText(string_sadness);
     }
 }

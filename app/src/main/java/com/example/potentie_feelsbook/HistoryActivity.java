@@ -141,7 +141,7 @@ public class HistoryActivity extends AppCompatActivity {
                 myPopup.dismiss();
             }
         });
-
+        //Edit date - (Not working)
         Button editDate = myPopup.findViewById(R.id.popup_button_date);
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +151,8 @@ public class HistoryActivity extends AppCompatActivity {
                 Log.e("CMPUT 301", test);
             }
         });
+
+
 
 
         ImageButton exit = myPopup.findViewById(R.id.popup_exit);
