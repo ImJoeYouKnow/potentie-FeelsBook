@@ -2,6 +2,8 @@ package com.example.potentie_feelsbook;
 
 import android.util.Log;
 
+import java.util.Collections;
+
 public class EmotionListController {
 
     private static EmotionHistoryList emotionHistoryList = null;
@@ -22,5 +24,4 @@ public class EmotionListController {
     public void removeEmotionEntry(EmotionEntry emotion){
         getEmotionHistoryList().removeEmotion(emotion);
     }
-
 }

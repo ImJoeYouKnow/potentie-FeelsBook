@@ -14,4 +14,11 @@
 
     <string name="text_input">Enter a note to record with your emotion:</string>
     <string name="text_input_desc">text input for note</string>
+
+    <string name="popup_icon_desc">Icon of mood you are editing</string>
+    <string name="popup_edit_date">Edit date</string>
+    <string name="popup_edit_note">Edit note</string>
+    <string name="popup_delete">Delete Record</string>
+    <string name="popup_exit">Button for closing popup</string>
+
 </resources>

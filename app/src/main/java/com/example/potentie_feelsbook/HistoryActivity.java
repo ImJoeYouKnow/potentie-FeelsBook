@@ -6,11 +6,15 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -59,6 +63,20 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
+         //Credit: Atif Mahmood(https://stackoverflow.com/users/1111918/atif-mahmood) - https://stackoverflow.com/a/13821611
+        Collections.sort(list, new Comparator<EmotionEntry>(){
+            public int compare(EmotionEntry obj1, EmotionEntry obj2) {
+                return obj2.getDate().compareTo(obj1.getDate());
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
+                return false;
+            }
+        });
+
     }
 
     public void openActivityHome(){
@@ -72,7 +90,6 @@ public class HistoryActivity extends AppCompatActivity {
         startActivity(intent);
         this.overridePendingTransition(0,0);
     }
-
     public void finishActivity(){
         this.finish();
     }
