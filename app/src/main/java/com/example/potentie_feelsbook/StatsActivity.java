@@ -6,6 +6,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class StatsActivity extends AppCompatActivity {
 
@@ -41,6 +45,9 @@ public class StatsActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_stats);
+
+        getListOfViews();
+
     }
 
     public void openActivityHome(){
@@ -57,5 +64,22 @@ public class StatsActivity extends AppCompatActivity {
 
     public void finishActivity(){
         this.finish();
+    }
+
+    public ArrayList<View> getListOfViews(){
+        TextView anger_stats = findViewById(R.id.stats_anger);
+        TextView joy_stats = findViewById(R.id.stats_joy);
+        TextView surprise_stats = findViewById(R.id.stats_surprise);
+        TextView love_stats = findViewById(R.id.stats_love);
+        TextView fear_stats = findViewById(R.id.stats_fear);
+        TextView sadness_stats = findViewById(R.id.stats_sadness);
+
+        anger_stats.setText("ANGER: ");
+        joy_stats.setText("JOY: ");
+        surprise_stats.setText("SURPRISE: ");
+        love_stats.setText("LOVE: ");
+        fear_stats.setText("FEAR: ");
+        sadness_stats.setText("SADNESS: ");
+        return null;
     }
 }
