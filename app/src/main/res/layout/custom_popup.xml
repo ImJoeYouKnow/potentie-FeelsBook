@@ -25,6 +25,33 @@
 
 
     <Button
+        android:id="@+id/popup_button_note"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/popup_edit_note"
+        app:layout_constraintBottom_toTopOf="@+id/popup_button_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/popup_button_note_save"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/popup_edit_note_save"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/popup_button_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/popup_button_date"
         android:layout_width="200dp"
         android:layout_height="50dp"
@@ -32,20 +59,6 @@
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/white"
         android:text="@string/popup_edit_date"
-        app:layout_constraintBottom_toTopOf="@+id/popup_button_note"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/popup_button_note"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/popup_edit_note"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,12 +70,13 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/white"
         android:text="@string/popup_delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/popup_button_note" />
+        app:layout_constraintTop_toBottomOf="@+id/popup_button_date" />
 
     <TextView
         android:id="@+id/popup_date"
@@ -87,8 +101,10 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/popup_button_date"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/popup_date" />
+        app:layout_constraintTop_toBottomOf="@+id/popup_date"
+        app:layout_constraintVertical_bias="0.166" />
 
     <ImageButton
         android:id="@+id/popup_exit"
@@ -108,10 +124,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/popup_button_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/popup_date" />
+        app:layout_constraintTop_toBottomOf="@+id/popup_date"
+        app:layout_constraintVertical_bias="0.166" />
 
 </android.support.constraint.ConstraintLayout>

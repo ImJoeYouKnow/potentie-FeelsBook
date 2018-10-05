@@ -10,8 +10,8 @@ import java.util.Date;
 
 public abstract class EmotionEntry {
     private DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    Date date = new Date();
-    String printDate = df.format(date);
+    private Date date = new Date();
+    private String printDate = df.format(date);
 
     private String note = "";
 
@@ -22,8 +22,9 @@ public abstract class EmotionEntry {
         return this.printDate;
     }
     public void setDate(Date newDate){
-        this.date= newDate;
-        String test = "Setting date: "+ date.toString();
+        this.date=newDate;
+        this.printDate = df.format(date);
+        String test = "Setting date: "+ date.toString() + " on object= " + this.toString();
         Log.e("CMPUT 301", test);
     }
 

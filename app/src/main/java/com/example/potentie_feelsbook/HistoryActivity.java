@@ -3,6 +3,7 @@ package com.example.potentie_feelsbook;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -22,18 +23,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 
 public class HistoryActivity extends AppCompatActivity {
 
     Dialog myPopup;
     Calendar datePicked;
     EmotionListController emotionListControl = new EmotionListController();
+    private static EmotionListManager emotionListManager = new EmotionListManager();
     private static final String TAG = "HistoryActivity";
 
 
@@ -72,13 +74,16 @@ public class HistoryActivity extends AppCompatActivity {
         final ArrayAdapter<EmotionEntry> emotionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(emotionAdapter);
 
-         EmotionListController.getEmotionHistoryList().addListener(new Listener() {
+        EmotionListController.getEmotionHistoryList().addListener(new Listener() {
             @Override
             public void update() {
                 list.clear();
                 Collection<EmotionEntry> emotionEntry = EmotionListController.getEmotionHistoryList().getEmotions();
                 list.addAll(emotionEntry);
+                Log.e("CMPUT 301","Notifying adapter of changes");
                 emotionAdapter.notifyDataSetChanged();
+                //Crashed here, need custom Json Serializer.
+                emotionListManager.saveEmotionList(getApplicationContext());
             }
         });
 
@@ -99,7 +104,6 @@ public class HistoryActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     public void openActivityHome(){
@@ -144,18 +148,34 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
-        Button editNote = myPopup.findViewById(R.id.popup_button_note);
+        final Button editNote = myPopup.findViewById(R.id.popup_button_note);
         editNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String oldText = finalEmotion.getNote();
-                TextView popup_note = myPopup.findViewById(R.id.popup_note);
+                final TextView popup_note = myPopup.findViewById(R.id.popup_note);
                 popup_note.setVisibility(View.GONE);
-                EditText editable = myPopup.findViewById(R.id.popup_edit_note);
+                final EditText editable = myPopup.findViewById(R.id.popup_edit_note);
                 editable.setVisibility(View.VISIBLE);
                 editable.setText(oldText);
-                Button saveButton = myPopup.findViewById(R.id.popup_button_note);
-                saveButton.setText("SAVE NOTE");
+                final Button saveButton = myPopup.findViewById(R.id.popup_button_note_save);
+                saveButton.setVisibility(View.VISIBLE);
+                editNote.setVisibility(View.GONE);
+                saveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String newText = editable.getText().toString();
+                        finalEmotion.setNote(newText);
+                        popup_note.setVisibility(View.VISIBLE);
+                        editable.setVisibility(View.GONE);
+                        editNote.setVisibility(View.VISIBLE);
+                        saveButton.setVisibility(View.GONE);
+                        String tempText = "Date:" + newText;
+                        popup_note.setText(tempText);
+                    }
+
+                });
+
             }
         });
 
@@ -164,10 +184,7 @@ public class HistoryActivity extends AppCompatActivity {
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDateTimePicker(finalEmotion);
-                //if(isChanged){finalEmotion.setDate(datePicked.getTime());}
-                //String test = "Your date was picked: "+ date;
-                //Log.e("CMPUT 301", date.toString());
+                showDateTimePicker();
             }
         });
 
@@ -181,19 +198,34 @@ public class HistoryActivity extends AppCompatActivity {
                 myPopup.dismiss();
             }
         });
+        final EmotionEntry temp = obj;
+        myPopup.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+
+                try {
+                    String test = "Setting date: "+ datePicked.getTime().toString() + " on object= " + temp.toString();
+                    Log.e("CMPUT 301",test);
+                    temp.setDate(datePicked.getTime());
+
+                }catch(NullPointerException e){
+                    Log.e("CMPUT", "Null pointer caught");
+                }
+            }
+        });
 
         myPopup.show();
-
 
     }
     public void finishActivity(){
         this.finish();
     }
 
+
+
     //Credit https://stackoverflow.com/a/35745881 - Abhishek (https://stackoverflow.com/users/5242161/abhishek)
-    public boolean showDateTimePicker(EmotionEntry emotion) {
+    public void showDateTimePicker() {
         final Calendar currentDate = Calendar.getInstance();
-        final EmotionEntry Femotion = emotion;
         datePicked = Calendar.getInstance();
         new DatePickerDialog(HistoryActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -204,14 +236,11 @@ public class HistoryActivity extends AppCompatActivity {
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         datePicked.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         datePicked.set(Calendar.MINUTE, minute);
-
-                        Femotion.setDate(datePicked.getTime());
-
-                        Log.v(TAG, "The choosen one " + datePicked.getTime());
+                        //Log.v(TAG, "The choosen one " + datePicked.getTime());
                     }
-                }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
+                },currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
             }
         }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
-        return true;
+
     }
 }
