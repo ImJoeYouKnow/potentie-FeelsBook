@@ -23,6 +23,11 @@ public class EmotionListController {
     public void removeEmotionEntry(EmotionEntry emotion){
         getEmotionHistoryList().removeEmotion(emotion);
     }
+
+    public void editEmotionEntryNote(EmotionEntry emotion){
+        emotionHistoryList
+    }
+
     public int getCount(String type){
         return getEmotionHistoryList().getCount(type);
     }

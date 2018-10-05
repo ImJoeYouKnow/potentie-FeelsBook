@@ -1,5 +1,7 @@
 package com.example.potentie_feelsbook;
 
+import android.util.Log;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,15 +10,21 @@ import java.util.Date;
 
 public abstract class EmotionEntry {
     private DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    String nowAsISO = df.format(new Date());
+    Date date = new Date();
+    String printDate = df.format(date);
 
     private String note = "";
 
-    public String getDate(){
-        return this.nowAsISO;
+    public Date getDate(){
+        return this.date;
     }
-    public void setDate(String newDate){
-        this.nowAsISO= newDate;
+    public String getDateFormatted(){
+        return this.printDate;
+    }
+    public void setDate(Date newDate){
+        this.date= newDate;
+        String test = "Setting date: "+ date.toString();
+        Log.e("CMPUT 301", test);
     }
 
     public String getNote(){
@@ -30,9 +38,9 @@ public abstract class EmotionEntry {
 
     public String toString() {
         if (!getNote().isEmpty()) {
-            return getName() +" | "+ getNote() +" | "+ getDate();
+            return getName() +" | "+ getNote() +" | "+ printDate;
         } else {
-            return getName() +" | "+ getDate();
+            return getName() +" | "+ printDate;
         }
     }
     //Saved for later if I have time
