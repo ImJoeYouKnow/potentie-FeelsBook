@@ -80,7 +80,7 @@ public class HistoryActivity extends AppCompatActivity {
                 list.clear();
                 Collection<EmotionEntry> emotionEntry = EmotionListController.getEmotionHistoryList().getEmotions();
                 list.addAll(emotionEntry);
-                Log.e("CMPUT 301","Notifying adapter of changes");
+                Log.d("CMPUT 301","Notifying adapter of changes");
                 emotionAdapter.notifyDataSetChanged();
                 //Crashed here, need custom Json Serializer.
                 emotionListManager.saveEmotionList(getApplicationContext());
@@ -205,11 +205,13 @@ public class HistoryActivity extends AppCompatActivity {
 
                 try {
                     String test = "Setting date: "+ datePicked.getTime().toString() + " on object= " + temp.toString();
-                    Log.e("CMPUT 301",test);
+                    Log.d("CMPUT 301",test);
                     temp.setDate(datePicked.getTime());
+                    EmotionListManager.saveEmotionList(getApplicationContext());
 
                 }catch(NullPointerException e){
-                    Log.e("CMPUT", "Null pointer caught");
+                    EmotionListManager.saveEmotionList(getApplicationContext());
+                    Log.d("CMPUT", "Null pointer caught");
                 }
             }
         });

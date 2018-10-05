@@ -4,9 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
@@ -21,11 +23,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 //TODO Implements JSONSerializer and JSONDeserializer
 public class EmotionListManager{
-
+    //consultation Credit - Anders Johnson - adj@ualberta.ca
     static ArrayList<EmotionEntry> emotionHistoryList = new ArrayList<>(EmotionListController.getEmotionHistoryList().getEmotions());
     private static final String FILENAME = "emotions.sav";
 
@@ -35,16 +41,14 @@ public class EmotionListManager{
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader reader = new BufferedReader(isr);
 
-            Gson gson = new Gson();
-            Type listTweetType=new TypeToken<ArrayList<EmotionEntry>>(){}.getType();
-            emotionHistoryList = gson.fromJson(reader, listTweetType);
-            fis.close();
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(EmotionEntry.class, new EmotionEntryTypeAdapter());
+            Gson gson = gsonBuilder.create();
+            EmotionHistoryList savedList = gson.fromJson(reader, EmotionHistoryList.class);
+            EmotionListController.setEmotionHistoryList(savedList);
 
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            Log.e("CMPUT 301", "GENERATING NEW LIST");
-            emotionHistoryList= new ArrayList<>();
             e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -54,12 +58,15 @@ public class EmotionListManager{
     }
     static public void saveEmotionList(Context context){
         try{
-        Log.e("CMPUT 301","SAVE TO DISK WAS CALLED");
+        Log.d("CMPUT 301","SAVE TO DISK WAS CALLED");
         FileOutputStream fos = context.openFileOutput(FILENAME, 0);
         OutputStreamWriter osw = new OutputStreamWriter(fos);
         BufferedWriter writer = new BufferedWriter(osw);
-        Gson gson  = new Gson();
-        gson.toJson(emotionHistoryList, writer);
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(EmotionEntry.class, new EmotionEntryTypeAdapter());
+        Gson gson = gsonBuilder.create();
+        gson.toJson(EmotionListController.getEmotionHistoryList(), writer);
         writer.flush();
         fos.close();
     } catch (FileNotFoundException e) {
@@ -72,14 +79,4 @@ public class EmotionListManager{
         e.printStackTrace();
     }
     }
-
-    //@Override
-    //public Object deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-    //    return null;
-    //}
-
-    //@Override
-    //public JsonElement serialize(Object src, Type typeOfSrc, JsonSerializationContext context) {
-     //   return null;
-    //}
 }

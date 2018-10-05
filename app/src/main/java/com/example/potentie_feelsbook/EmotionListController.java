@@ -23,8 +23,6 @@ public class EmotionListController{
 
     private static EmotionHistoryList emotionHistoryList = null;
 
-    private static final String FILENAME = "emotions.sav";
-
     //Lazy Singleton - Credit: Abram Hindle (https://www.youtube.com/watch?v=uLnoI7mbuEo)
     static public EmotionHistoryList getEmotionHistoryList(){
         if (emotionHistoryList == null){
@@ -33,10 +31,16 @@ public class EmotionListController{
         return emotionHistoryList;
     }
 
+    static public void setEmotionHistoryList(EmotionHistoryList oldList){
+        emotionHistoryList = oldList;
+        String test = "PASSED THROUGH SUCCESS" + oldList.toString();
+        Log.d("CMPUT 301",test);
+    }
+
     public void addEmotionEntry(EmotionEntry emotion){
         getEmotionHistoryList().addEmotion(emotion);
         getEmotionHistoryList().notifyListeners();
-        Log.e("CMPUT 301", "adding Entry");
+        Log.d("CMPUT 301", "adding Entry");
     }
 
     public void removeEmotionEntry(EmotionEntry emotion){

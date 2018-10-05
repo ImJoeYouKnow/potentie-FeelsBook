@@ -31,7 +31,8 @@ public class EmotionHistoryList {
     }
     public void notifyListeners(){
         for (Listener listener : listeners){
-            listener.update();
+            if(listener != null){
+            listener.update();}
         }
     }
     public void addListener(Listener l){

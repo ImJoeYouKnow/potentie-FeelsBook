@@ -1,5 +1,6 @@
 package com.example.potentie_feelsbook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EmotionListController emotionListControl = new EmotionListController();
+    private EmotionListManager emotionListManager;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -48,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
+        //
+        EmotionListManager.loadEmotionList(this);
         setupButtons();
 
 
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 emotionListControl.addEmotionEntry(sadnessEmotion);
                 break;
         }
+        emotionListManager.saveEmotionList(this);
     }
 
     public void setupButtons(){
@@ -119,7 +123,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String toReturn = text.getText().toString();
         //clears text box when button is clicked.
         text.setText("");
-        return toReturn;
+        if(toReturn.length() > 100){
+            Toast.makeText(this, "Text too long, not recorded", Toast.LENGTH_SHORT).show();
+            return "";
+        }
+        else {
+            return toReturn;
+        }
     }
 
 
