@@ -13,7 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-
+//First place that opens when the app starts
+//Optional comment can be entered before taping an emotion to create a record
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EmotionListController emotionListControl = new EmotionListController();

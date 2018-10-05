@@ -2,6 +2,7 @@ package com.example.potentie_feelsbook;
 
 import java.util.ArrayList;
 
+//The list that stores emotion records app-wide
 public class EmotionHistoryList {
     protected ArrayList<EmotionEntry> emotionHistoryList;
     protected ArrayList<Listener> listeners;

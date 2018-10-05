@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-
+//An abstract class that represents the framework of an Emotion
 public abstract class EmotionEntry {
     private DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     private Date date = new Date();

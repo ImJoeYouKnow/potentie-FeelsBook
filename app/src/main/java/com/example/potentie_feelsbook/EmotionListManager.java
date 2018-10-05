@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-//TODO Implements JSONSerializer and JSONDeserializer
+//Primarly used for loading and saving of emotion entries to the file system
 public class EmotionListManager{
     //consultation Credit - Anders Johnson - adj@ualberta.ca
     static ArrayList<EmotionEntry> emotionHistoryList = new ArrayList<>(EmotionListController.getEmotionHistoryList().getEmotions());

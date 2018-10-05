@@ -18,7 +18,7 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-
+//A controller used for adding and removing EmotionEntries from the EmotionHistoryList singleton
 public class EmotionListController{
 
     private static EmotionHistoryList emotionHistoryList = null;

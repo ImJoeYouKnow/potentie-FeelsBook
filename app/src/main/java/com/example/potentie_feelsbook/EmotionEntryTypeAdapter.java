@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+//Used to adapt the EmotionEntry type to Json format, also used to convert Json into EmotionEntry objects if they are save to file.
 public class EmotionEntryTypeAdapter implements JsonSerializer<EmotionEntry>, JsonDeserializer<EmotionEntry> {
     @Override
     public JsonElement serialize(EmotionEntry emotionEntry, Type typeOfSrc, JsonSerializationContext context) {

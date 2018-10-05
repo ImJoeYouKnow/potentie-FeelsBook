@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+//An activity which shows a basic count of how many emotion records of each type has been created.
 public class StatsActivity extends AppCompatActivity {
 
 
