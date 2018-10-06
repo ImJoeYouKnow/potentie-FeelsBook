@@ -4,7 +4,9 @@ A basic app for recording emotions throughout the day.
 Credits:
 
 Chris Penner - consultation
+
 Anders Johnson - consultation
+
 Abram Hindle- for lazy singleton tutorial - (https://www.youtube.com/watch?v=uLnoI7mbuEo)
 
 Atif Mahmood(https://stackoverflow.com/users/1111918/atif-mahmood) - https://stackoverflow.com/a/13821611
