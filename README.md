@@ -1,7 +1,7 @@
-# CMPUT_301_A1
+# potentie-FeelsBook
 A basic app for recording emotions throughout the day.
 
-Credits:
+## Credits:
 
 Chris Penner - consultation
 
@@ -15,3 +15,4 @@ Refrence: Aws Rh on Youtube for basic tutorial on popups - https://www.youtube.c
 
 Abhishek - DateTimePicker that sets a global variable to whatever the user chose. https://stackoverflow.com/a/35745881 -  (https://stackoverflow.com/users/5242161/abhishek)
 
+Emoji graphics used in InkScape provided by - https://github.com/Xaviju/inkscape-open-symbols (https://github.com/Xaviju)
